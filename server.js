@@ -4,9 +4,15 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const hbs = require('hbs')
 const expressHandlebars = require('express-handlebars')
+const config = require('./config/secrets');
 
 
 const app = express();
+
+mongoose.connect(config.database, {useNewUrlParser: true},function(err){
+    if(err) console.log(err);
+    console.log("mongo connected")
+})
 
 app.engine(".hbs" , expressHandlebars({ defaultLayout : 'layout',extname : '.hbs' }));
 app.set('view engine','hbs');
