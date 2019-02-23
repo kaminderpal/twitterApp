@@ -15,6 +15,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+//request urls.
+const mainRoute = require("./routes/main");
+app.use("/",mainRoute);
 
 
 app.listen(9000,()=>{
