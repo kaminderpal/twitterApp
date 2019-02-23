@@ -3,12 +3,13 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 
 
-const userSchema = new mongoose.Schema({
+let userSchema = new mongoose.Schema({
     email : {
         type :  String,
         unique : true,
         lowercase : true
     },
+    password : String,
     name : String,
     photo : String,
     tweets : [
@@ -26,8 +27,8 @@ userSchema.pre("save",function(next){
     if(!user.isModified('password')) return next();
     if(user.password){
         bcryptjs.genSalt(10,function(err,salt){
-            if(err)return next();
-            bcryptjs.hash(user.password,salt,null,function(err,hash){
+            if(err)return next(err);
+            bcryptjs.hash(user.password,salt,function(err,hash){
                 if(err)return next();
                 user.password = hash;
                 next(err);
@@ -43,7 +44,7 @@ userSchema.methods.gravatar = function(size){
     return "https://gravatar.com/avatar/" + md5 +  "?s=" +size +  "&d=retro";
 }
 userSchema.methods.comparePassword = function(password){
-    return bcryptjs.comparePassword(password,this.password);
+    return bcryptjs.compareSync(password,this.password);
 }
 
 module.exports = mongoose.model('User',userSchema);
