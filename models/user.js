@@ -3,7 +3,6 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 
 
-
 const userSchema = new mongoose.Schema({
     email : {
         type :  String,
@@ -15,7 +14,7 @@ const userSchema = new mongoose.Schema({
     tweets : [
         {
             tweet : {
-                type : Schema.Types.ObjectId,
+                type : mongoose.Schema.Types.ObjectId,
                 ref : 'Tweet'
             }
         }

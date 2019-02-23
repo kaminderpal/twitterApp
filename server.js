@@ -38,7 +38,9 @@ app.use(flash());
 app.use(compression());
 //request urls.
 const mainRoute = require("./routes/main");
-app.use("/",mainRoute);
+const userRoute = require("./routes/user");
+app.use(mainRoute);
+app.use(userRoute);
 
 
 app.listen(9000,()=>{
