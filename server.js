@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const hbs = require('hbs')
 const expressHandlebars = require('express-handlebars')
 const compression = require('compression');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const config = require('./config/secrets');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -36,6 +38,14 @@ app.use(session({
 }));
 app.use(flash());
 app.use(compression());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function(req,res,next){
+    res.locals.user = req.user;
+    next();
+})
+
 //request urls.
 const mainRoute = require("./routes/main");
 const userRoute = require("./routes/user");
