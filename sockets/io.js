@@ -1,11 +1,9 @@
 module.exports = (io) => {
-  
   io.on('connection', (socket) => {
-    console.log('connected');
     const { user } = socket.request;
-    console.log(user.name);
+    console.log(`${user.name} connected`);
     socket.on('tweet', (data) => {
-      console.log(data);
+      io.emit('incomingTweets', { data, user });
     });
   });
 };
