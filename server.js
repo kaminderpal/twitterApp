@@ -10,10 +10,14 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const path = require('path');
+const http = require('http');
+const io = require('socket.io');
 const config = require('./config/secrets');
 
-
 const app = express();
+
+const server = http.Server(app);
+const socket = io(server);
 
 mongoose.connect(config.database, { useNewUrlParser: true }, (err) => {
     if (err) console.log(err);
@@ -44,6 +48,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// sockets
+require('./sockets/io')(socket);
+
+
 // request urls.
 const mainRoute = require('./routes/main');
 const userRoute = require('./routes/user');
@@ -51,7 +59,6 @@ const userRoute = require('./routes/user');
 app.use(mainRoute);
 app.use(userRoute);
 
-
-app.listen(9000, () => {
+server.listen(9000, () => {
   console.log('Server listening at 9000');
 });
