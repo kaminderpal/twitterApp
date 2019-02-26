@@ -9,7 +9,17 @@ $(document).ready(function (){
   });
 
 
-  socket.on("incomingTweets", function(data){
-    console.log(data);
+  socket.on("incomingTweets", function(tweet){
+      var html = getTweetHtml(tweet.user,tweet.data); 
+      $("#tweets").append(html);
   });
+  function getTweetHtml(user,data){
+    return "<div class='media'>"+
+                "<img src="+ user.photo +" class='mr-3 align-self-center' width='64px' alt='user photo'>"+
+                "<div class='media-body'>"+
+                    "<h5 class='mt-0'>"+ user.name +"</h5>"+
+                    "<p>"+data.content+"</p>"+
+                "</div>" +
+            "</div>";
+  }
 });
