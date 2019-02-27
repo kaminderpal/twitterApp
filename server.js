@@ -76,5 +76,5 @@ app.use(mainRoute);
 app.use(userRoute);
 
 server.listen(9000, () => {
-  console.log('Server listening at 9000');
+  console.log(`Server listening at 9000 with ${process.pid} `);
 });
