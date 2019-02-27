@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-6 mx-auto">
+    <div class="col-sm-12 col-md-12 mx-auto col-lg-6">
         <form id="sendTweet">
             <div class="form-group">
                 <input type="text" class="form-control" id="tweet">
@@ -13,20 +13,16 @@
                 <button class="btn btn-primary" type="submit" >Tweet</button>
             </div>
         </form>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-6 mx-auto">
         <div id="tweets">
+            {{#each tweets}}
             <div class="media">
-                <img src="{{user.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
+                <img src="{{owner.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
                 <div class="media-body">
-                    <h5 class="mt-0">{{user.name}}</h5>
-                    <p>Hello from {{user.name}}</p>
+                    <h6 class="mt-0">{{owner.name}}</h6>
+                    <p>{{content}}</p>
                 </div>
             </div>
+            {{/each}}
         </div>
     </div>
 </div>

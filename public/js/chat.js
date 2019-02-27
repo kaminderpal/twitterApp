@@ -12,7 +12,7 @@ $(document).ready(function (){
 
   socket.on("incomingTweets", function(tweet){
       var html = getTweetHtml(tweet.user,tweet.data); 
-      $("#tweets").append(html);
+      $("#tweets").prepend(html);
   });
   function getTweetHtml(user,data){
     return "<div class='media'>"+
