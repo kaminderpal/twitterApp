@@ -16,4 +16,23 @@ $(function(){
       },
     });
 });
+$(document).on("click","#unfollow", function(e){
+  e.preventDefault();
+
+  var userID = $("#userId").val();
+
+  $.ajax({
+    url: "/unfollow/" + userID,
+    method: "POST",
+    success : function(data){
+      $("#unfollow").addClass("btn-dark").removeClass("btn-primary").html("Follow").attr("id","follow");
+    },
+    fail : function(data){
+      console.log(data);
+    },
+  });
+});
+
+
+
 });

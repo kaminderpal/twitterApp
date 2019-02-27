@@ -82,18 +82,38 @@ router.post('/follow/:id', async (req, res) => {
             return res.status(200).send("success");
     }
     catch(err){
-        res.sendStatus(404)
+        res.sendStatus(404);
     }
-
-
-
-
-
-
-
-
-
-
+});
+router.post('/unfollow/:id', async (req, res) => {
+    const { id: followId } = req.params;
+    const { _id: userId } = req.user;
+    try {
+        const udpateFollowing = await User.update(
+                                            { 
+                                                _id: userId,
+                                            },
+                                            {
+                                                $pull: {
+                                                    following: followId,
+                                                }
+                                            });
+        const updateFollower = await User.update({
+                                                    _id: followId,
+                                                },
+                                                    {
+                                                        $pull: {
+                                                            followers: userId,
+                                                        }
+                                                });
+            if( !udpateFollowing || !updateFollower ){
+                return res.status(404).send();
+            }    
+            return res.status(200).send('success');
+    }
+    catch(err){
+        res.sendStatus(404);
+    }
 });
 
 module.exports = router;
