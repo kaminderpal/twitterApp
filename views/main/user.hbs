@@ -18,10 +18,10 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
      {{#each tweets}}
-            <div class="media">
+            <div class="media mb-3">
                 <img src="{{owner.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
                 <div class="media-body">
-                    <h6 class="mt-0">{{owner.name}}</h6>
+                    <h6 class="mt-0 text-capitalize">{{owner.name}}</h6>
                     <p>{{content}}</p>
                 </div>
             </div>
@@ -29,20 +29,20 @@
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     {{#each user.following}}
-        <div class="media">
+        <div class="media mb-3">
             <img src="{{photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
             <div class="media-body">
-                <h6 class="mt-0">{{name}}</h6>
+                <h6 class="mt-0 text-capitalize">{{name}}</h6>
             </div>
         </div>
     {{/each}}
   </div>
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     {{#each user.followers}}
-        <div class="media">
+        <div class="media mb-3">
             <img src="{{photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
             <div class="media-body">
-                <h6 class="mt-0">{{name}}</h6>
+                <h6 class="mt-0 text-capitalize">{{name}}</h6>
             </div>
         </div>
     {{/each}}

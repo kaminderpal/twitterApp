@@ -8,10 +8,10 @@
             <ul class="navbar-nav ">
                 {{#if user}}    
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/{{user._id}}">{{user.name}}</a>
+                        <a class="nav-link text-capitalize" href="/user/{{user._id}}">{{user.name}}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/logout" class="nav-link">Logout</a>
+                        <a href="/logout" class="nav-link text-capitalize">Logout</a>
                     </li>
                 {{/if}}
             </ul>
