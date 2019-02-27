@@ -16,11 +16,13 @@
         <div id="tweets">
             {{#each tweets}}
             <div class="media">
-                <img src="{{owner.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
-                <div class="media-body">
-                    <h6 class="mt-0">{{owner.name}}</h6>
-                    <p>{{content}}</p>
-                </div>
+                <a href="/user/{{owner._id}}" class="media text-body">
+                    <img src="{{owner.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
+                    <div class="media-body">
+                        <h6 class="mt-0">{{owner.name}}</h6>
+                        <p>{{content}}</p>
+                    </div>
+                </a>
             </div>
             {{/each}}
         </div>
