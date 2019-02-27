@@ -15,12 +15,14 @@ $(document).ready(function (){
       $("#tweets").prepend(html);
   });
   function getTweetHtml(user,data){
-    return "<div class='media'>"+
+    return "<div class='media mb-3'>"+
+                "<a href="+ user._id+ " class='media text-black'>"+
                 "<img src="+ user.photo +" class='mr-3 align-self-center' width='64px' alt='user photo'>"+
                 "<div class='media-body'>"+
                     "<h5 class='mt-0'>"+ user.name +"</h5>"+
                     "<p>"+data.content+"</p>"+
                 "</div>" +
+                "</a>"+
             "</div>";
   }
 });

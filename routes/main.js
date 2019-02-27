@@ -16,8 +16,7 @@ router.get("/",(req,res,next)=>{
     }
 });
 
-router.get("/user/:id", async (req, res, next) => {
-
+router.get("/user/:id", async (req, res) => {
     const { id } = req.params;
     if (id) {
         try {
@@ -29,15 +28,15 @@ router.get("/user/:id", async (req, res, next) => {
                                     .populate('following')
                                     .exec();
             if (!user || !tweetData) {
-                res.render('main/user', { user: [], tweets: [] });
+                res.render('main/user', { userFound: [], tweets: [] });
             }
-            res.render('main/user', { user, tweets: tweetData });
+            res.render('main/user', { userFound: user, tweets: tweetData });
         }
         catch (err) {
-            res.render('main/user', { user: [], tweets: [] });
+            res.render('main/user', { userFound: [], tweets: [] });
         }
     } else {
-        res.render('main/user', { user: [], tweets: [] });
+        res.render('main/user', { userFound: [], tweets: [] });
     }
 });
 

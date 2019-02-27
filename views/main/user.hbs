@@ -5,18 +5,18 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+    <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">
       Following
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+    <a class="nav-link" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">
       Followers
     </a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show active pt-3" id="home" role="tabpanel" aria-labelledby="home-tab">
      {{#each tweets}}
             <div class="media mb-3">
                 <img src="{{owner.photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
@@ -27,8 +27,8 @@
             </div>
       {{/each}}
   </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    {{#each user.following}}
+  <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="profile-tab">
+    {{#each userFound.following}}
         <div class="media mb-3">
             <img src="{{photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
             <div class="media-body">
@@ -37,8 +37,8 @@
         </div>
     {{/each}}
   </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-    {{#each user.followers}}
+  <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="contact-tab">
+    {{#each userFound.followers}}
         <div class="media mb-3">
             <img src="{{photo}}" class="mr-3 align-self-center" width="64px" alt="user photo">
             <div class="media-body">
