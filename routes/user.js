@@ -16,15 +16,13 @@ router.route("/signup")
                         req.flash('errors','Account already exist for this email');
                         res.redirect('/signup');
                     }else{
-                        let user = new User();
-                        const photo = user.gravatar();
-                        user.name = name;
-                        user.email = email;
-                        user.password = password;
-                        user.photo = photo;
+                        let user = new User({
+                            name, email, password
+                        });
+                        user.photo = user.getPhoto(email);
                         user.save(function(err){
                             if(err)return next(err);
-                            res.redirect("/"); 
+                            res.redirect("/login"); 
                         });
                     }
             });

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs')
-const crypto = require('crypto')
-
+const gravatar = require('gravatar')
 
 let userSchema = new mongoose.Schema({
     email : {
@@ -37,11 +36,8 @@ userSchema.pre("save",function(next){
     }
 });
 
-userSchema.methods.gravatar = function(size){
-    if(!size) size = 200;
-    if(!this.email) return "https://gravatar.com/avatar/?s="+size + "&d=retro";
-    var md5 = crypto.createHash("md5").update(this.email).digest("hex");
-    return "https://gravatar.com/avatar/" + md5 +  "?s=" +size +  "&d=retro";
+userSchema.methods.getPhoto = function(email){
+    return gravatar.url(email, {s: '200', r: 'x', d: 'retro'}, true);
 }
 userSchema.methods.comparePassword = function(password){
     return bcryptjs.compareSync(password,this.password);
